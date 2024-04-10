@@ -1,2 +1,3 @@
-# sound_realty_ml_service
+# Sound Realty Machine Learning Service
+
 Sound Realty's ML service for property value estimation
