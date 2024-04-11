@@ -5,7 +5,7 @@ from api.models.prediction_input import PredictionInput
 from api.models.prediction_output import PredictionOutput
 
 
-def test_prediction_input_validation_valid_data_expect_success():
+def test_prediction_input_validation_valid_data():
     """Test the PredictionInput model with both valid and invalid data."""
     # Valid input
     try:
@@ -33,7 +33,7 @@ def test_prediction_input_validation_valid_data_expect_success():
         assert False, "PredictionInput model failed to validate correct data."
 
 
-def test_prediction_input_validation_invalid_zipcode_expect_error():
+def test_prediction_input_validation_invalid_zipcode():
     """Test the PredictionInput model with invalid zipcodes to
     verify specific error messages."""
 
@@ -58,6 +58,13 @@ def test_prediction_input_validation_invalid_zipcode_expect_error():
 def test_prediction_output_validation():
     """Ensure the PredictionOutput model works as expected."""
     try:
-        PredictionOutput(prediction=350000.0, metadata={"model_version": "1.0"})
+        PredictionOutput(
+            prediction=350000.0,
+            metadata={
+                "model_version": 1,
+                "sales_features": ["feature1", "feature2"],
+                "demographic_features": ["featureA", "featureB"],
+            },
+        )
     except ValidationError:
         assert False, "PredictionOutput model failed to validate correct data."
