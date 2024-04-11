@@ -1,9 +1,9 @@
 .PHONY: all test lint format run help install train docker-build docker-push hit-api
 
-# Default command when you run 'make'
+TAG ?= latest
+
 all: help
 
-# Help command to list available commands
 help:
 	@echo "Available commands:"
 	@echo "  install        - Install project dependencies using pip."
@@ -17,17 +17,15 @@ help:
 	@echo "  hit-api        - Hits the API."
 	@echo "  help           - Display this help."
 
-# Install project dependencies using pip
 install:
 	@echo "Installing dependencies from pyproject.toml..."
 	@pip install --no-cache-dir .'[dev]'
 
-# Run tests
 test:
 	@echo "Running tests..."
 	@pytest
 
-# Lint with flake8, black, and isort
+
 lint:
 	@echo "Linting code..."
 	@echo "Running flake8..."
@@ -56,7 +54,7 @@ train:
 # Builds a new image
 docker-build:
 	@echo "Building new image..."
-	@sleep 5
+	@docker build -t sound_realty_ml_service:$(TAG) -f api.Dockerfile .
 
 # Pushes image to image repo
 docker-push:
