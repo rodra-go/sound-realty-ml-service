@@ -48,7 +48,7 @@ jobs:
     - name: Build and push Docker images
       run: |
         make docker-build TAG=$PROJECT_VERSION
-        make push
+        make docker-push
 
 #  deploy-to-k8s:
 #    runs-on: ubuntu-latest
