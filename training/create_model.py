@@ -28,6 +28,7 @@ SALES_COLUMN_SELECTION = [
 ]
 OUTPUT_DIR = "models/versions"  # Directory where output artifacts will be saved
 WORKFLOW_FILE_PATH = "./.github/workflows/ci-cd-pipeline.yml"
+K8S_DEPLOYMENT_PATH = "./kubernetes/deployment.yaml"
 
 
 def load_data(
@@ -95,7 +96,7 @@ def find_latest_version(dir_path):
         return None  # No directories with integer names
 
 
-def update_cicd_variables(model_version):
+def update_model_version(model_version):
     """Updates the model version by changing the CICD pipeline
     environment variable MODEL_VERSION's value.
 
@@ -132,7 +133,7 @@ def main():
     else:
         model_version += 1
 
-    update_cicd_variables(model_version)
+    # update_model_version(model_version)
 
     output_dir = pathlib.Path(OUTPUT_DIR / pathlib.Path(str(model_version)))
     output_dir.mkdir(exist_ok=True)

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sound-realty-ml-app
-        image: sound-realty-ml-service:0.0.0
+        image: sound-realty-ml-service:0.0.1
         ports:
         - containerPort: 80
         resources:
@@ -26,3 +26,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        env:
+          - name: MODEL_VERSION
+            value: "1"
+          - name: MODEL_DIR_PATH
+            value: "models"
+          - name: DEMOGRAPHIC_DATA_PATH
+            value: "data/zipcode_demographics.csv"

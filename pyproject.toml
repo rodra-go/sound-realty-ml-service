@@ -1,6 +1,6 @@
 [project]
 name = "sound_realty_ml_service"
-version = "0.0.0"
+version = "0.0.1"
 description = "An API that make Real Estate price predictions"
 authors = [{ name = "Rodrigo Cunha", email = "rdr.cunha@gmail.com" }]
 readme = "README.md"
