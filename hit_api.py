@@ -1,6 +1,5 @@
 import requests
 
-
 # The base URL for your FastAPI application
 BASE_URL = "http://localhost:8000"
 
@@ -23,7 +22,7 @@ predict_payload = {
     "lat": 47.6974,
     "long": -122.313,
     "sqft_living15": 950.0,
-    "sqft_lot15": 6380.0
+    "sqft_lot15": 6380.0,
 }
 
 # JSON payload for the 'predict_basic' endpoint
@@ -35,7 +34,7 @@ predict_basic_payload = {
     "floors": 1,
     "sqft_above": 1660.0,
     "sqft_basement": 560.0,
-    "zipcode": "98115"
+    "zipcode": "98115",
 }
 
 
