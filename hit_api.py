@@ -1,5 +1,6 @@
 import requests
 
+
 # The base URL for your FastAPI application
 BASE_URL = "http://localhost:8000"
 
