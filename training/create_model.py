@@ -25,6 +25,7 @@ SALES_COLUMN_SELECTION = [
     "view",
     "grade",
     "lat",
+    "sqft_living15",
 ]
 OUTPUT_DIR = "models/versions"  # Directory where output artifacts will be saved
 K8S_DEPLOYMENT_PATH = "./kubernetes/deployment.yaml"
