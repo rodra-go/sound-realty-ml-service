@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   PROJECT_VERSION: '0.0.0'
-  MODEL_VERSION: '2'
+  MODEL_VERSION: '1'
   MODEL_DIR_PATH: 'models'
   DEMOGRAPHIC_DATA_PATH: 'data/zipcode_demographics.csv'
 

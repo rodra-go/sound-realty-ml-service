@@ -1,4 +1,4 @@
-.PHONY: all test lint format run help install train
+.PHONY: all test lint format run help install train build push
 
 # Default command when you run 'make'
 all: help
@@ -6,13 +6,15 @@ all: help
 # Help command to list available commands
 help:
 	@echo "Available commands:"
-	@echo "  install - Install project dependencies using pip."
-	@echo "  test    - Run the test suite."
-	@echo "  lint    - Lint the code with flake8, black, and isort."
-	@echo "  format  - Format the code with black and isort."
-	@echo "  run     - Run the FastAPI application."
-	@echo "  train   - Trains a new version of the model."
-	@echo "  help    - Display this help."
+	@echo "  install        - Install project dependencies using pip."
+	@echo "  test           - Run the test suite."
+	@echo "  lint           - Lint the code with flake8, black, and isort."
+	@echo "  format         - Format the code with black and isort."
+	@echo "  run            - Run the FastAPI application."
+	@echo "  train          - Trains a new version of the model."
+	@echo "  docker-build   - Builds a docker image."
+	@echo "  docker-push    - Pushes the image to docker repository."
+	@echo "  help           - Display this help."
 
 # Install project dependencies using pip
 install:
@@ -49,3 +51,16 @@ run:
 train:
 	@echo "Training a new model version..."
 	@python training/create_model.py
+
+# Build a new image version
+train:
+	@echo "Training a new model version..."
+	@python training/create_model.py
+
+docker-build:
+    @echo "Building new image..."
+    @sleep 5
+
+docker-push:
+    @echo "Pushing new image..."
+    @sleep 5
