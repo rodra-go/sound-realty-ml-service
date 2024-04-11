@@ -24,7 +24,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: lint-and-install
+    needs: lint
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.9
