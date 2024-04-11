@@ -1,4 +1,4 @@
-.PHONY: all test lint format run help install train docker-build docker-push
+.PHONY: all test lint format run help install train docker-build docker-push hit-api
 
 # Default command when you run 'make'
 all: help
@@ -14,6 +14,7 @@ help:
 	@echo "  train          - Trains a new version of the model."
 	@echo "  docker-build   - Builds a docker image."
 	@echo "  docker-push    - Pushes the image to docker repository."
+	@echo "  hit-api        - Hits the API."
 	@echo "  help           - Display this help."
 
 # Install project dependencies using pip
@@ -61,3 +62,8 @@ docker-build:
 docker-push:
 	@echo "Pushing new image..."
 	@sleep 5
+
+# Hits API
+hit-api:
+	@echo "Hitting the API..."
+	@python hit_api.py
