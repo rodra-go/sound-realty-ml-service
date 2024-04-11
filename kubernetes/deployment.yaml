@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sound-realty-ml-deployment
+  labels:
+    app: sound-realty-ml-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sound-realty-ml-app
+  template:
+    metadata:
+      labels:
+        app: sound-realty-ml-app
+    spec:
+      containers:
+      - name: sound-realty-ml-app
+        image: sound-realty-ml-service:0.0.0
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

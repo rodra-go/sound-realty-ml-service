@@ -5,7 +5,7 @@ from api.endpoints import predictions
 
 app = FastAPI(
     title="Sound Realty ML Service",
-    version="1.0",
+    version="0.0.0",
     description="API to predict house prices",
 )
 

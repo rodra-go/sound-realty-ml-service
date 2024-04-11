@@ -1,0 +1,22 @@
+[bumpversion]
+current_version = 0.0.0
+commit = False
+tag = True
+
+[bumpversion:file:CHANGELOG.md]
+search = [Unreleased]
+replace = [Unreleased] [{new_version} - {now:%Y-%m-%d}
+
+[bumpversion:file:kubernetes/deployment.yaml]
+search = sound-realty-ml-service:{current_version}
+replace = sound-realty-ml-service:{new_version}
+
+[bumpversion:file:pyproject.toml]
+
+[bumpversion:file:.github/workflows/ci-cd-pipeline.yml]
+search = PROJECT_VERSION: {current_version}
+replace = PROJECT_VERSION: {new_version}
+
+[bumpversion:file:main.py]
+search = version="{current_version}"
+replace = version="{new_version}"

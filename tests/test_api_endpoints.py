@@ -40,3 +40,31 @@ def test_predict_endpoint_validation_error():
         "/predict", json={"bedrooms": -1}
     )  # Example of invalid input
     assert response.status_code == 422  # Validation error
+
+
+def test_basic_predict_endpoint():
+    """Test the `/predict` endpoint with a valid request."""
+    response = client.post(
+        "/predict_basic",
+        json={
+            "bedrooms": 3.0,
+            "bathrooms": 2.5,
+            "sqft_living": 2220.0,
+            "sqft_lot": 6380.0,
+            "floors": 1,
+            "sqft_above": 1660.0,
+            "sqft_basement": 560.0,
+            "zipcode": "98115"
+        },
+    )
+    assert response.status_code == 200
+    assert "prediction" in response.json()
+    assert "metadata" in response.json()
+
+
+def test_basic_predict_endpoint_validation_error():
+    """Test the `/predict` endpoint with invalid data, expecting a validation error."""
+    response = client.post(
+        "/predict", json={"bedrooms": -1}
+    )  # Example of invalid input
+    assert response.status_code == 422  # Validation error

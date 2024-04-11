@@ -17,15 +17,15 @@ logging.basicConfig(level=logging.INFO)  # Set the desired logging level
 logger = logging.getLogger(__name__)
 
 # Load Environment Variables
-MODEL_VERSION = os.environ.get("MODEL_VERSION", 1)
+MODEL_VERSION = os.environ.get("MODEL_VERSION", '1')
 MODEL_DIR_PATH = os.environ.get("MODEL_DIR_PATH", "models")
 DEMOGRAPHIC_DATA_PATH = os.environ.get(
-    "DEMOGRAPHIC_DATA_PATH", "./data/zipcode_demographics.csv"
+    "DEMOGRAPHIC_DATA_PATH", "data/zipcode_demographics.csv"
 )
 
 # Configure model variables
-MODEL_PATH = f"./models/versions/{MODEL_VERSION}/model.pkl"
-MODEL_FEATURE_LIST = f"./models/versions/{MODEL_VERSION}/model_features.json"
+model_path = f"./models/versions/{MODEL_VERSION}/model.pkl"
+load_model_feature_list_path = f"./models/versions/{MODEL_VERSION}/model_features.json"
 
 # Instantiate router
 router = APIRouter()
@@ -49,7 +49,7 @@ def load_demographic_data():
 def load_model():
     try:
         # Load the model
-        return joblib.load(MODEL_PATH)
+        return joblib.load(model_path)
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Error loading model: {str(e)}"
@@ -60,7 +60,7 @@ def load_model():
 @lru_cache(maxsize=None)
 def load_model_feature_list():
     try:
-        with open(MODEL_FEATURE_LIST, "r") as f:
+        with open(load_model_feature_list_path, "r") as f:
             return json.load(f)
     except Exception as e:
         raise HTTPException(
@@ -108,7 +108,7 @@ async def predict_price(
 
         # Prepare metadata
         metadata = {
-            "model_version": MODEL_VERSION,
+            "model_version": int(MODEL_VERSION),
             "sales_features": list(input_data.__fields__),
             "demographic_features": list(demographic_data.columns),
         }
