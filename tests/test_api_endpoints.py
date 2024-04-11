@@ -54,7 +54,7 @@ def test_basic_predict_endpoint():
             "floors": 1,
             "sqft_above": 1660.0,
             "sqft_basement": 560.0,
-            "zipcode": "98115"
+            "zipcode": "98115",
         },
     )
     assert response.status_code == 200

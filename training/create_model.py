@@ -3,7 +3,6 @@ import os
 import pathlib
 import pickle
 from typing import List, Tuple
-import yaml
 
 import pandas
 from sklearn import model_selection, neighbors, pipeline, preprocessing
@@ -23,7 +22,7 @@ SALES_COLUMN_SELECTION = [
     "zipcode",
 ]
 OUTPUT_DIR = "models/versions"  # Directory where output artifacts will be saved
-WORKFLOW_FILE_PATH = './.github/workflows/ci-cd-pipeline.yml'
+WORKFLOW_FILE_PATH = "./.github/workflows/ci-cd-pipeline.yml"
 
 
 def load_data(
@@ -72,7 +71,8 @@ def find_latest_version(dir_path):
     # List all items in the given directory
     items = os.listdir(dir_path)
 
-    # Filter out items that are not directories or whose names cannot be converted to integers
+    # Filter out items that are not directories or whose names
+    # cannot be converted to integers
     dir_names_as_ints = []
     for item in items:
         full_path = os.path.join(dir_path, item)
@@ -91,24 +91,21 @@ def find_latest_version(dir_path):
 
 
 def update_cicd_variables(model_version):
-    # # Read the current content of the file
-    # with open(WORKFLOW_FILE_PATH, 'r') as file:
-    #     data = yaml.safe_load(file)
-    #
-    # # Update the MODEL_VERSION environment variable
-    # data['env']['MODEL_VERSION'] = str(model_version)
-    #
-    # # Write the modified content back to the file
-    # with open(WORKFLOW_FILE_PATH, 'w') as file:
-    #     yaml.safe_dump(data, file, sort_keys=False)
-    with open(WORKFLOW_FILE_PATH, 'r') as file:
+    """Updates the model version by changing the CICD pipeline
+    environment variable MODEL_VERSION's value.
+
+    Args:
+        model_version: version of a new model (integer)
+
+    """
+    with open(WORKFLOW_FILE_PATH, "r") as file:
         lines = file.readlines()
 
     # Modify the MODEL_VERSION environment variable
-    with open(WORKFLOW_FILE_PATH, 'w') as file:
+    with open(WORKFLOW_FILE_PATH, "w") as file:
         for line in lines:
-            if line.strip().startswith('MODEL_VERSION:'):
-                file.write(f'  MODEL_VERSION: \'{model_version}\'\n')  # Adjust the indentation if necessary
+            if line.strip().startswith("MODEL_VERSION:"):
+                file.write(f"  MODEL_VERSION: '{model_version}'\n")
             else:
                 file.write(line)
 
@@ -126,7 +123,7 @@ def main():
 
     model_version = find_latest_version(OUTPUT_DIR)
     if model_version is None:
-        model_version = '1'
+        model_version = "1"
     else:
         model_version += 1
 

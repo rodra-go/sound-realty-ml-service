@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)  # Set the desired logging level
 logger = logging.getLogger(__name__)
 
 # Load Environment Variables
-MODEL_VERSION = os.environ.get("MODEL_VERSION", '1')
+MODEL_VERSION = os.environ.get("MODEL_VERSION", "1")
 MODEL_DIR_PATH = os.environ.get("MODEL_DIR_PATH", "models")
 DEMOGRAPHIC_DATA_PATH = os.environ.get(
     "DEMOGRAPHIC_DATA_PATH", "data/zipcode_demographics.csv"
@@ -51,9 +51,7 @@ def load_model():
         # Load the model
         return joblib.load(model_path)
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=f"Error loading model: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Error loading model: {str(e)}")
 
 
 # Load model features
