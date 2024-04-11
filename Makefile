@@ -1,4 +1,4 @@
-.PHONY: all test lint format run help install train build push
+.PHONY: all test lint format run help install train docker-build docker-push
 
 # Default command when you run 'make'
 all: help
@@ -52,15 +52,12 @@ train:
 	@echo "Training a new model version..."
 	@python training/create_model.py
 
-# Build a new image version
-train:
-	@echo "Training a new model version..."
-	@python training/create_model.py
-
+# Builds a new image
 docker-build:
-    @echo "Building new image..."
-    @sleep 5
+	@echo "Building new image..."
+	@sleep 5
 
+# Pushes image to image repo
 docker-push:
-    @echo "Pushing new image..."
-    @sleep 5
+	@echo "Pushing new image..."
+	@sleep 5
