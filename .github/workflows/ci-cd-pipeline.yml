@@ -47,7 +47,7 @@ jobs:
 #        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build and push Docker images
       run: |
-        make build TAG=$PROJECT_VERSION
+        make docker-build TAG=$PROJECT_VERSION
         make push
 
 #  deploy-to-k8s:
