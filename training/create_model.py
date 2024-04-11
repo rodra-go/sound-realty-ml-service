@@ -20,7 +20,6 @@ SALES_COLUMN_SELECTION = [
     "sqft_above",
     "sqft_basement",
     "zipcode",
-
     # Features added to enhance performance
     "waterfront",
     "view",
