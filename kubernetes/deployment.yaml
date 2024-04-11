@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sound-realty-ml-app
-        image: sound-realty-ml-service:0.0.1
+        image: sound-realty-ml-service:0.1.0
         ports:
         - containerPort: 80
         resources:
