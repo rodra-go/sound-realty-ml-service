@@ -1,5 +1,7 @@
 .PHONY: all test lint format run help install train docker-build docker-push hit-api
 
+TAG ?= latest
+
 all: help
 
 help:
@@ -52,7 +54,7 @@ train:
 # Builds a new image
 docker-build:
 	@echo "Building new image..."
-	@docker build -t sound-realty-ml-service:$(TAG) -f api.Dockerfile .
+	@docker build -t sound_realty_ml_service:$(TAG) -f api.Dockerfile .
 
 # Pushes image to image repo
 docker-push:

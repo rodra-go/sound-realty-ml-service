@@ -70,6 +70,11 @@ The deployment process is handled by the CICD pipeline. After training a new
 model version, just run the bumpversion to update the Tag for the new image
 and push the changes to the repository.
 
+## EDA
+
+The notebooks used on the exploratory data analysis conducted to build
+the application are available at the directory [`eda/`](eda/)
+
 
 
 
