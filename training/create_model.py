@@ -15,11 +15,17 @@ SALES_COLUMN_SELECTION = [
     "bedrooms",
     "bathrooms",
     "sqft_living",
-    "sqft_lot",
+    # "sqft_lot", # feature removed
     "floors",
     "sqft_above",
     "sqft_basement",
     "zipcode",
+
+    # Features added to enhance performance
+    "waterfront",
+    "view",
+    "grade",
+    "lat",
 ]
 OUTPUT_DIR = "models/versions"  # Directory where output artifacts will be saved
 WORKFLOW_FILE_PATH = "./.github/workflows/ci-cd-pipeline.yml"
