@@ -28,7 +28,7 @@ spec:
             cpu: "500m"
         env:
           - name: MODEL_VERSION
-            value: "1"
+            value: "2"
           - name: MODEL_DIR_PATH
             value: "models"
           - name: DEMOGRAPHIC_DATA_PATH

@@ -27,7 +27,6 @@ SALES_COLUMN_SELECTION = [
     "lat",
 ]
 OUTPUT_DIR = "models/versions"  # Directory where output artifacts will be saved
-WORKFLOW_FILE_PATH = "./.github/workflows/ci-cd-pipeline.yml"
 K8S_DEPLOYMENT_PATH = "./kubernetes/deployment.yaml"
 
 
@@ -97,23 +96,39 @@ def find_latest_version(dir_path):
 
 
 def update_model_version(model_version):
-    """Updates the model version by changing the CICD pipeline
+    """Updates the model version by changing the deployment
     environment variable MODEL_VERSION's value.
 
     Args:
         model_version: version of a new model (integer)
 
     """
-    with open(WORKFLOW_FILE_PATH, "r") as file:
+    # Read the content of the file
+    with open(K8S_DEPLOYMENT_PATH, "r") as file:
         lines = file.readlines()
 
-    # Modify the MODEL_VERSION environment variable
-    with open(WORKFLOW_FILE_PATH, "w") as file:
-        for line in lines:
-            if line.strip().startswith("MODEL_VERSION:"):
-                file.write(f"  MODEL_VERSION: '{model_version}'\n")
-            else:
-                file.write(line)
+    # Prepare the updated lines
+    updated_lines = []
+    model_version_updated = False
+    for line in lines:
+        # Check if this line contains the MODEL_VERSION environment variable
+        if "name: MODEL_VERSION" in line:
+            # Assuming the next line is its value
+            index = lines.index(line) + 1
+            indentation = lines[index].split("value:")[0]
+            updated_lines.append(line)
+            updated_lines.append(f'{indentation}value: "{model_version}"\n')
+            model_version_updated = True
+        elif model_version_updated:
+            # Skip appending the old value line since we've already updated it
+            model_version_updated = False
+        else:
+            # Append lines that don't need to be modified
+            updated_lines.append(line)
+
+    # Write the updated content back to the file
+    with open(K8S_DEPLOYMENT_PATH, "w") as file:
+        file.writelines(updated_lines)
 
 
 def main():
@@ -133,7 +148,7 @@ def main():
     else:
         model_version += 1
 
-    # update_model_version(model_version)
+    update_model_version(model_version)
 
     output_dir = pathlib.Path(OUTPUT_DIR / pathlib.Path(str(model_version)))
     output_dir.mkdir(exist_ok=True)

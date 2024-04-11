@@ -61,7 +61,7 @@ def test_prediction_output_validation():
         PredictionOutput(
             prediction=350000.0,
             metadata={
-                "model_version": 1,
+                "ml_model_version": 1,
                 "sales_features": ["feature1", "feature2"],
                 "demographic_features": ["featureA", "featureB"],
             },
